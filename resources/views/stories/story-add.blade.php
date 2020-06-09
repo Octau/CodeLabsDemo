@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('pageTitle', 'Add a new Story')
 @section('content')
     <div class='container'>
         <div class='row'>
@@ -8,7 +8,8 @@
                 <form action="{{ route('story.save') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <input type="text" class="form-control" name="title">
+                    <input type="text" class="form-control {{ $errors->has('title') ? 'is-invalid' : ''}}" name="title">
+                    <div class="invalid-feedback">{{$errors->first('title')}}</div>
                     </div>
                     <div class="form-group">
                         <select name="story_type" class="form-control">
